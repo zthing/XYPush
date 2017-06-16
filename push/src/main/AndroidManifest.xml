@@ -1,0 +1,29 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="cn.xinyisoft.push">
+
+    <application
+        android:allowBackup="true"
+        android:supportsRtl="true">
+
+        <!--推送服务-->
+        <service
+            android:name="cn.xinyisoft.push.XinyiSocketService"
+            android:process=":xy_service_push"/>
+
+        <!--网络变化广播-->
+        <receiver
+            android:name=".NetWorkChangedReceiver"
+            android:process=":xy_service_push">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+            </intent-filter>
+        </receiver>
+
+        <meta-data
+            android:name="XG_V2_ACCESS_ID"
+            android:value="2100260504"/>
+        <meta-data
+            android:name="XG_V2_ACCESS_KEY"
+            android:value="A76X15JLZ2CA"/>
+    </application>
+</manifest>
