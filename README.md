@@ -66,9 +66,7 @@
      */
     public static void connect(Context context, int uid, String token)
 	
-	/**
-     * 断开连接
-     */
+	/** 断开连接 */
     public static void disconnect(Context context)
 
 	//也可以使用下列方法初始化参数连接
