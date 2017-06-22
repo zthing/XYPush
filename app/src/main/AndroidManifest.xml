@@ -27,9 +27,11 @@
             </intent-filter>
         </receiver>
 
+        <!--芯易APPID-->
         <meta-data
             android:name="XINYI_APPID"
             android:value="100"/>
+        <!--芯易SECRET-->
         <meta-data
             android:name="XINYI_SECRET"
             android:value="ec78d6bcb3b46dab009d9e0b220c8180"/>

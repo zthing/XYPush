@@ -17,7 +17,6 @@ public class XinyiPush {
     /**
      * 连接
      *
-     * @param context 上下文对象
      * @param uid     用户id
      * @param token   设备编号
      */
@@ -45,6 +44,9 @@ public class XinyiPush {
         context.startService(XinyiSocketService.Companion.getSocketService());
     }
 
+    /**
+     * 断开连接
+     */
     public static void disconnect(Context context) {
         if (XinyiSocketService.Companion.getSocketService() != null) {
             context.stopService(XinyiSocketService.Companion.getSocketService());
@@ -104,6 +106,5 @@ public class XinyiPush {
         public void connect(int uid, String token) {
             XinyiPush.connect(context, uid, token);
         }
-
     }
 }

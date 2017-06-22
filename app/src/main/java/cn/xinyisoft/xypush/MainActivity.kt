@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
                 .socketHttpUrl("http://api.xinyitest.cn/api")
                 .connect(38, token)
 
-//        XinyiPush.connect(this, 38, token)
+        XinyiPush.connect(this, 38, token)
     }
 
     override fun onDestroy() {

@@ -24,6 +24,10 @@ class XinyiSocketService : Service() {
         socketConnect?.disConnect()
     }
 
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        return Service.START_STICKY
+    }
+
     companion object {
         var socketService: Intent? = null
     }
