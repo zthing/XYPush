@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.InetSocketAddress;
+import java.net.SocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
@@ -91,13 +92,18 @@ class XinyiSocketConnect {
                         String secret = sp.getString("XINYI_SECRET", "");
                         String socketIp = sp.getString("socketIp", XinyiPush.SOCKET_IP);
                         int socketPort = sp.getInt("socketPort", XinyiPush.SOCKET_PORT);
-                        socketChannel = SocketChannel.open(new InetSocketAddress(socketIp, socketPort));
+                        SocketAddress socketAddress = new InetSocketAddress(socketIp, socketPort);
+//                            socketChannel = SocketChannel.open(new InetSocketAddress(socketIp, socketPort));
+                        socketChannel = SocketChannel.open();
+                        socketChannel.socket().connect(socketAddress, 10000);//连接超时时间
+                        socketChannel.socket().setSoTimeout(15000);//读超时时间
                         socketChannel.configureBlocking(false);
                         sendMsg(XinyiPushHttpRequest.getValidateStr(uid, token, appId, secret));
                         task = new XTimerTask();
                         timer.schedule(task, 5000, 5000);
                         receiveMessage();
                     } catch (Exception e) {
+                        Log.e("SocketTimeoutException", e.getMessage());
                         e.printStackTrace();
                         sendReceiver(Util.OnPushCallback.PUSH_EXCEPTION, e.getMessage());
                     }
@@ -105,7 +111,9 @@ class XinyiSocketConnect {
                         sendReceiver(Util.OnPushCallback.PUSH_DIS_RECON, "");
                     }
                     closeConnect();
-                    task.cancel();
+                    if (task != null) {
+                        task.cancel();
+                    }
                     try {
                         Thread.sleep(3000);
                     } catch (InterruptedException e) {
@@ -134,7 +142,9 @@ class XinyiSocketConnect {
      */
     void disConnect() {
         isConnect = false;
-        task.cancel();
+        if (task != null) {
+            task.cancel();
+        }
         NetWorkChangedReceiver.removeNetWorkChangeListener(NetWorkChangedReceiver.NETWORK_SOCKET);
         closeConnect();
     }
