@@ -103,7 +103,6 @@ class XinyiSocketConnect {
                         timer.schedule(task, 5000, 5000);
                         receiveMessage();
                     } catch (Exception e) {
-                        Log.e("SocketTimeoutException", e.getMessage());
                         e.printStackTrace();
                         sendReceiver(Util.OnPushCallback.PUSH_EXCEPTION, e.getMessage());
                     }
@@ -233,7 +232,9 @@ class XinyiSocketConnect {
      * 发送消息
      */
     private void sendMsg(final String str) {
-        Log.e("socket发送", str);
+        if (XinyiPush.isLog) {
+            Log.e("socket发送", str);
+        }
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -251,11 +252,13 @@ class XinyiSocketConnect {
      * 处理接收到的推送消息
      */
     private void pushMsg(final String str) {
-        for (int i = 0; i < (str.length() % 2000 == 0 ? str.length() / 2000 : str.length() / 2000 + 1); i++) {
-            if (i == str.length() / 2000 && str.length() % 2000 != 0) {
-                Log.e("socket接收", str.substring(i * 2000, i * 2000 + (str.length() % 2000)));
-            } else {
-                Log.e("socket接收", str.substring(i * 2000, i * 2000 + 2000));
+        if (XinyiPush.isLog) {
+            for (int i = 0; i < (str.length() % 2000 == 0 ? str.length() / 2000 : str.length() / 2000 + 1); i++) {
+                if (i == str.length() / 2000 && str.length() % 2000 != 0) {
+                    Log.e("socket接收", str.substring(i * 2000, i * 2000 + (str.length() % 2000)));
+                } else {
+                    Log.e("socket接收", str.substring(i * 2000, i * 2000 + 2000));
+                }
             }
         }
         if (str.equals("xt")) {

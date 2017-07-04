@@ -16,9 +16,9 @@ class MainActivity : AppCompatActivity() {
         val token = DeviceUtils.getAndroidID() ?: System.currentTimeMillis().toString()
 
         XinyiPush.Builder(this)
-                .soceketIp("192.168.10.216")
+                .socketIp("192.168.10.188")
                 .socketPort(8124)
-                .socketHttpUrl("http://api.xinyitest.cn/api")
+                .isLog(true)
                 .connect(38, token)
 
         XinyiPush.connect(this, 38, token)

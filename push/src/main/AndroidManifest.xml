@@ -6,8 +6,7 @@
         android:supportsRtl="true">
 
         <!--推送服务-->
-        <service
-            android:name="cn.xinyisoft.push.XinyiSocketService"/>
+        <service android:name="cn.xinyisoft.push.XinyiSocketService"/>
 
         <!--网络变化广播-->
         <receiver
@@ -16,12 +15,5 @@
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
             </intent-filter>
         </receiver>
-
-        <meta-data
-            android:name="XG_V2_ACCESS_ID"
-            android:value="2100260504"/>
-        <meta-data
-            android:name="XG_V2_ACCESS_KEY"
-            android:value="A76X15JLZ2CA"/>
     </application>
 </manifest>

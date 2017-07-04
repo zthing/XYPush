@@ -10,15 +10,16 @@ import android.content.pm.PackageManager;
 public class XinyiPush {
     static final String SP_PUSH = "XYPush";
 
-    static String SOCKET_HTTP_URL = "http://api.xinyitest.cn/api";
-    static String SOCKET_IP = "192.168.10.216";
+    static String SOCKET_IP = "192.168.10.188";
     static int SOCKET_PORT = 8124;
+
+    static boolean isLog = true;
 
     /**
      * 连接
      *
-     * @param uid     用户id
-     * @param token   设备编号
+     * @param uid   用户id
+     * @param token 设备编号
      */
     public static void connect(Context context, int uid, String token) {
         Editor editor = context.getSharedPreferences(SP_PUSH, Context.MODE_PRIVATE).edit();
@@ -71,16 +72,16 @@ public class XinyiPush {
         }
 
         /**
-         * 初始化soceket IP地址
-         * 默认：192.168.10.216
+         * 初始化socket IP地址
+         * 默认：192.168.10.188
          */
-        public Builder soceketIp(String ip) {
+        public Builder socketIp(String ip) {
             sp.edit().putString("socketIp", ip).apply();
             return this;
         }
 
         /**
-         * 初始化socekt端口
+         * 初始化socket端口
          * 默认：8124
          */
         public Builder socketPort(int port) {
@@ -89,11 +90,11 @@ public class XinyiPush {
         }
 
         /**
-         * 设置http请求地址
-         * 默认地址：http://api.xinyitest.cn/api
+         * 是否打印socket相关信息
+         * 默认：true
          */
-        public Builder socketHttpUrl(String url) {
-            sp.edit().putString("socketHttpUrl", url).apply();
+        public Builder isLog(boolean isLog) {
+            XinyiPush.isLog = isLog;
             return this;
         }
 

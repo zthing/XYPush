@@ -12,7 +12,7 @@ import org.json.JSONObject;
  */
 public class Util {
 
-    public static String getSocketSign(JSONObject json, String method, int appId, String secret) throws JSONException {
+    static String getSocketSign(JSONObject json, String method, int appId, String secret) throws JSONException {
         SignUtil.getSendStr_socket(appId, json, method);
         return SignUtil.getSign(json.toString(), secret);
     }
@@ -20,7 +20,7 @@ public class Util {
     /**
      * 检测网络是否可用
      */
-    public static boolean isNetworkConnected(Context context) {
+    static boolean isNetworkConnected(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo ni = cm.getActiveNetworkInfo();
         return ni != null && ni.isConnectedOrConnecting();

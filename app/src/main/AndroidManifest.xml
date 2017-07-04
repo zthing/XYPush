@@ -23,7 +23,7 @@
         <!--接收推送信息广播-->
         <receiver android:name=".PushReceiver">
             <intent-filter>
-                <action android:name="cn.xinisoft.push"/>
+                <action android:name="cn.xinyisoft.push"/>
             </intent-filter>
         </receiver>
 
@@ -35,6 +35,12 @@
         <meta-data
             android:name="XINYI_SECRET"
             android:value="ec78d6bcb3b46dab009d9e0b220c8180"/>
-    </application>
 
+        <meta-data
+            android:name="XG_V2_ACCESS_ID"
+            android:value="2100260504"/>
+        <meta-data
+            android:name="XG_V2_ACCESS_KEY"
+            android:value="A76X15JLZ2CA"/>
+    </application>
 </manifest>

@@ -1,6 +1,7 @@
 package cn.xinyisoft.xypush
 
 import android.content.Context
+import android.util.Log
 import cn.xinyisoft.push.XinyiPushReceiver
 
 /**
@@ -11,6 +12,7 @@ class PushReceiver : XinyiPushReceiver() {
     }
 
     override fun onPushStatus(isSuccess: Boolean, msg: String?) {
+        Log.e("" + isSuccess, msg + "-.-")
     }
 
     override fun onPushException(msg: String?) {
